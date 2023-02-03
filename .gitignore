@@ -22,9 +22,7 @@ DerivedData
 *.xcuserstate
 ios/.xcode.env.local
 
-android/
-.gradle
-keystore.properties
+android/gradle/keystore.properties
 
 # Android/IntelliJ
 #
