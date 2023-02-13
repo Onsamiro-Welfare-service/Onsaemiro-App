@@ -4,6 +4,8 @@ import 'react-native-gesture-handler';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import axios from 'axios';
 
+Text.defaultProps = Text.defaultProps || {};
+Text.defaultProps.allowFontScaling = false;
 
 export default function TwoChoice({ route, navigation }) {
 
@@ -115,9 +117,11 @@ export default function TwoChoice({ route, navigation }) {
 
   return (
     <View style={styles.container}>
-      <View style={styles.question}>
-        <Image style={styles.image} source={{ uri: route.params.Qimage }} />
-        <Text sytle={styles.titleText}>{route.params.Qcontent}</Text>
+      <View style={styles.header}>
+        <TouchableOpacity style={styles.button}>
+          <Image style={styles.image} source={{ uri: route.params.Qimage }} />
+          <Text style={styles.titleText}>{route.params.Qcontent}</Text>
+        </TouchableOpacity>
       </View>
       <View style={styles.footer}>
         <TouchableOpacity style={styles.button} onPress={() => mainAct(route.params.AcontentOne)}>
@@ -150,14 +154,14 @@ const styles = StyleSheet.create({
   titleText: {
     alignContent: 'center',
     justifyContent: 'center',
-    fontSize: '50px',
+    fontSize: 27,
     fontWeight: 'bold',
     marginBottom: 10
   },
   titleButton: {
     alignContent: 'center',
     justifyContent: 'center',
-    fontSize: 30,
+    fontSize: 27,
     fontWeight: 'bold',
     marginBottom: 10
   },
@@ -166,6 +170,9 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: 'white',
+  },
+  header:{
+    flex: 5
   },
   footer: {
     flex: 3,

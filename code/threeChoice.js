@@ -26,6 +26,7 @@ export default function ThreeChoice({ route, navigation }) {
         const response = axios.post("http://13.209.212.43/api/upload_answer", {
           WholeTool
         })
+        console.log(WholeTool);
       })
 
       alert('문진이 완료되었습니다');
