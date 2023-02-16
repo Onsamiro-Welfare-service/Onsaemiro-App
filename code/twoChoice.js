@@ -4,9 +4,6 @@ import 'react-native-gesture-handler';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import axios from 'axios';
 
-Text.defaultProps = Text.defaultProps || {};
-Text.defaultProps.allowFontScaling = false;
-
 export default function TwoChoice({ route, navigation }) {
 
   const mainAct = (props) => {

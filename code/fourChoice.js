@@ -4,7 +4,6 @@ import 'react-native-gesture-handler';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import axios from 'axios';
 
-
 export default function FourChoice({ route, navigation }) {
 
   const mainAct = (props) => {
@@ -23,7 +22,7 @@ export default function FourChoice({ route, navigation }) {
         WholeTool.id = result;
         WholeTool.answer = AnswerTool;
         WholeTool.question = QuestionTool;
-        const response = axios.post("13.209.212.43/api/upload_answer", {
+        const response = axios.post("http://13.209.212.43/api/upload_answer", {
           WholeTool
         })
       })
@@ -46,6 +45,7 @@ export default function FourChoice({ route, navigation }) {
       const imageOfQuestion = QPhoto.q; //다음 질문지의 질문 사진
       const imageOfAnswerOne = QPhoto.a1; //다음 질문지의 답변1 사진
       const imageOfAnswerTwo = QPhoto.a2; //다음 질문지의 답변2 사진
+
 
       if (countChoice == '2') {
         navigation.navigate('TwoChoice', {
@@ -115,9 +115,11 @@ export default function FourChoice({ route, navigation }) {
 
   return (
     <View style={styles.container}>
-      <View style={styles.question}>
-        <Image style={styles.image} source={{ uri: route.params.Qimage }} />
-        <Text sytle={styles.titleText}>{route.params.Qcontent}</Text>
+      <View style={styles.header}>
+        <TouchableOpacity style={styles.button}>
+          <Image style={styles.image} source={{ uri: route.params.Qimage }} />
+          <Text style={styles.titleText}>{route.params.Qcontent}</Text>
+        </TouchableOpacity>
       </View>
       <View style={styles.footer}>
         <TouchableOpacity style={styles.button} onPress={() => mainAct(route.params.AcontentOne)}>
@@ -129,6 +131,16 @@ export default function FourChoice({ route, navigation }) {
           <Text style={styles.titleButton}>{route.params.AcontentTwo}</Text>
         </TouchableOpacity>
       </View>
+      <View style={styles.footer2}>
+        <TouchableOpacity style={styles.button} onPress={() => mainAct(route.params.AcontentThree)}>
+          <Image style={styles.image} source={{ uri: route.params.AimageThree }} />
+          <Text style={styles.titleButton}>{route.params.AcontentThree}</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.button} onPress={() => mainAct(route.params.AcontentFour)}>
+          <Image style={styles.image} source={{ uri: route.params.AimageFour }} />
+          <Text style={styles.titleButton}>{route.params.AcontentFour}</Text>
+        </TouchableOpacity>
+      </View>
     </View>
   )
 }
@@ -137,7 +149,11 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 10,
-    backgroundColor: 'white'
+    backgroundColor: 'white',
+    flexDirection: 'column'
+  },
+  header:{
+    flex: 5
   },
   image: {
     justifyContent: 'center',
@@ -150,14 +166,14 @@ const styles = StyleSheet.create({
   titleText: {
     alignContent: 'center',
     justifyContent: 'center',
-    fontSize: '50px',
+    fontSize: 27,
     fontWeight: 'bold',
     marginBottom: 10
   },
   titleButton: {
     alignContent: 'center',
     justifyContent: 'center',
-    fontSize: 30,
+    fontSize: 27,
     fontWeight: 'bold',
     marginBottom: 10
   },
@@ -168,6 +184,11 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
   },
   footer: {
+    flex: 3,
+    flexDirection: 'row',
+    backgroundColor: 'white',
+  },
+  footer2:{
     flex: 3,
     flexDirection: 'row',
     backgroundColor: 'white',

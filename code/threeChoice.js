@@ -4,7 +4,6 @@ import 'react-native-gesture-handler';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import axios from 'axios';
 
-
 export default function ThreeChoice({ route, navigation }) {
 
   const mainAct = (props) => {
@@ -25,8 +24,7 @@ export default function ThreeChoice({ route, navigation }) {
         WholeTool.question = QuestionTool;
         const response = axios.post("http://13.209.212.43/api/upload_answer", {
           WholeTool
-        })
-        console.log(WholeTool);
+        }) 
       })
 
       alert('문진이 완료되었습니다');
@@ -47,6 +45,7 @@ export default function ThreeChoice({ route, navigation }) {
       const imageOfQuestion = QPhoto.q; //다음 질문지의 질문 사진
       const imageOfAnswerOne = QPhoto.a1; //다음 질문지의 답변1 사진
       const imageOfAnswerTwo = QPhoto.a2; //다음 질문지의 답변2 사진
+    
 
       if (countChoice == '2') {
         navigation.navigate('TwoChoice', {
@@ -116,9 +115,11 @@ export default function ThreeChoice({ route, navigation }) {
 
   return (
     <View style={styles.container}>
-      <View style={styles.question}>
-        <Image style={styles.image} source={{ uri: route.params.Qimage }} />
-        <Text sytle={styles.titleText}>{route.params.Qcontent}</Text>
+      <View style={styles.header}>
+        <TouchableOpacity style={styles.button}>
+          <Image style={styles.image} source={{ uri: route.params.Qimage }} />
+          <Text style={styles.titleText}>{route.params.Qcontent}</Text>
+        </TouchableOpacity>
       </View>
       <View style={styles.footer}>
         <TouchableOpacity style={styles.button} onPress={() => mainAct(route.params.AcontentOne)}>
@@ -128,6 +129,10 @@ export default function ThreeChoice({ route, navigation }) {
         <TouchableOpacity style={styles.button} onPress={() => mainAct(route.params.AcontentTwo)}>
           <Image style={styles.image} source={{ uri: route.params.AimageTwo }} />
           <Text style={styles.titleButton}>{route.params.AcontentTwo}</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.button} onPress={() => mainAct(route.params.AcontentThree)}>
+          <Image style={styles.image} source={{ uri: route.params.AimageThree }} />
+          <Text style={styles.titleButton}>{route.params.AcontentThree}</Text>
         </TouchableOpacity>
       </View>
     </View>
@@ -140,6 +145,9 @@ const styles = StyleSheet.create({
     padding: 10,
     backgroundColor: 'white'
   },
+  header:{
+    flex: 5
+  },
   image: {
     justifyContent: 'center',
     height: '75%',
@@ -151,14 +159,14 @@ const styles = StyleSheet.create({
   titleText: {
     alignContent: 'center',
     justifyContent: 'center',
-    fontSize: '50px',
+    fontSize: 27,
     fontWeight: 'bold',
     marginBottom: 10
   },
   titleButton: {
     alignContent: 'center',
     justifyContent: 'center',
-    fontSize: 30,
+    fontSize: 27,
     fontWeight: 'bold',
     marginBottom: 10
   },
