@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, TouchableOpacity, Image } from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity, Image, ScrollView } from 'react-native';
 import 'react-native-gesture-handler';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import axios from 'axios';
@@ -24,7 +24,7 @@ export default function ThreeChoice({ route, navigation }) {
         WholeTool.question = QuestionTool;
         const response = axios.post("http://13.209.212.43/api/upload_answer", {
           WholeTool
-        }) 
+        })
       })
 
       alert('문진이 완료되었습니다');
@@ -45,7 +45,7 @@ export default function ThreeChoice({ route, navigation }) {
       const imageOfQuestion = QPhoto.q; //다음 질문지의 질문 사진
       const imageOfAnswerOne = QPhoto.a1; //다음 질문지의 답변1 사진
       const imageOfAnswerTwo = QPhoto.a2; //다음 질문지의 답변2 사진
-    
+
 
       if (countChoice == '2') {
         navigation.navigate('TwoChoice', {
@@ -145,8 +145,8 @@ const styles = StyleSheet.create({
     padding: 10,
     backgroundColor: 'white'
   },
-  header:{
-    flex: 5
+  header: {
+    flex: 4
   },
   image: {
     justifyContent: 'center',
